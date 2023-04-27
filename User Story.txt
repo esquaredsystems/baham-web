@@ -1,0 +1,9 @@
+STORY
+Sarah commutes to university on her maroon Daihatsu Cuore. She has a capacity for three extra people in a car but the three people who she can accommodate have to either live near Ayesha Manzil, where she commutes to and from, or situate somewhere within the route she takes. She is thinking about minimizing her fuel expense as well as the environmental effects and decides to post an ad on university noticeboard so that other people can contact her to share the ride.
+Nabeel, the tuck-shop cashier, Dr. Imran from faculty, and a student from another college Shaista, see this ad and contact Sarah.
+Sarah gladly welcomes them and the three start to travel together. Nabeel lives nearby, so he is the last one who gets picked and the first one to drop. Shasta lives quite close to Sarah's place, however she only joins on Mondays and Thursdays. Dr. Imran lives near national stadium which is approximately at two third of the distance from university to Sarah’s place.
+After a while, things get slightly uneasy. Nabeel is often not ready on time and kept the three waiting. He, on his side also has a valid complaint, that he is unfairly paying 25% of the fuel cost for a quarter of the distance.
+Because of such matters, Sarah signs contracts with companions, including terms like schedule, share in the fuel and maintenance cost, start and end dates of contract.
+Halfway to the semester, Sarah terminates the contract with Nabeel as it was not cost effective; another of her classmates, Sidra requests to join, which Sarah accepts. Sidra lives at Shara-e-Faisal, therefore pays according to the distance.
+Dr. Imran is quite happy; he likes the company and car. He ends up buying this car from Sarah therefore the car ownership transfers to him.
+But there are still a dozen cars and 100 motorcycles left in the campus parking. Can we design a utility to systematically solve this problem for others?

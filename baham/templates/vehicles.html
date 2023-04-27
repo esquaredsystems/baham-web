@@ -1,0 +1,39 @@
+{% include 'header.html' %}
+
+<main role="main">
+
+    <div class="container col-auto">
+        <span class="text-center"><h2>Vehicles seeking your companionship</h2></span>
+        <table id="dataTable" class="table table-striped display table-responsive">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Manufacturer</th>
+                    <th scope="col">Model Name</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Sitting Capacity</th>
+                    <th scope="col">Total Registered</th>
+                    <th scope="col">Edit/Delete</th>
+                </tr>
+            </thead>
+            {% for vehicle in vehicles %}
+                <tr>
+                    <td><a class="btn-link" href="#">{{vehicle.model_id}}</a></td>
+                    <td>{{vehicle.vendor}}</td>
+                    <td>{{vehicle.model}}</td>
+                    <td>{{vehicle.type}}</td>
+                    <td>{{vehicle.capacity}}</td>
+                    <td>0</td>
+                    <td>
+                        <button class="btn btn-warning">Edit</button>
+                        <button class="btn btn-danger" disabled="disabled">Delete</button>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        <a class="btn btn-success" href="{% url 'createvehicle' %}">Add yours</a>
+    </div> <!-- /container -->
+
+</main>
+
+{% include 'footer.html' %}
