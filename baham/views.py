@@ -7,6 +7,18 @@ from baham.models import VehicleModel
 
 
 # Create your views here.
+
+
+def veh_delete(request, pk):
+    vehicle_model = VehicleModel.objects.get(model_id=pk)
+    vehicle_model.void()
+    return HttpResponseRedirect(reverse('home'))
+
+def veh_nodelete(request, pk):
+    vehicle_model = VehicleModel.objects.get(model_id=pk)
+    vehicle_model.unvoid()
+    return HttpResponseRedirect(reverse('home'))
+
 def view_home(request):
     template = loader.get_template('home.html')
     context = {
@@ -25,7 +37,7 @@ def view_aboutus(request):
 
 def view_vehicles(request):
     template = loader.get_template('vehicles.html')
-    vehicles = VehicleModel.objects.all().order_by('vendor')
+    vehicles = VehicleModel.objects.all().filter(is_deleted=False).order_by('vendor')
     context = {
         'navbar': 'vehicles',
         'vehicles': vehicles

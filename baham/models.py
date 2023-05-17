@@ -1,6 +1,7 @@
 from django.utils.timezone import now
 from django.contrib.auth.models import User
 from django.db import models
+from datetime import datetime
 
 from baham.constants import COLOURS, TOWNS
 from baham.enum_types import VehicleType, VehicleStatus, UserType
@@ -33,27 +34,34 @@ class UserProfile(models.Model):
     bio = models.TextField()
 
     def __str__(self):
-        return f"{self.username} {self.first_name} {self.last_name}"
-
+        return f"{self.user.username} {self.user.first_name} {self.user.last_name}"
 
 class VehicleModel(models.Model):
     model_id = models.AutoField(primary_key=True, db_column='id')
-    # Toyota, Honda, Suzuki, Kia, etc.
     vendor = models.CharField(max_length=20, null=False, blank=False)
-    # Corolla, Vitz, City, Sportage, etc.
     model = models.CharField(max_length=20, null=False, blank=False, default='Unknown')
-    # Sedan, Motorcyle, SUV, Van, etc.
     type = models.CharField(max_length=50, choices=[(t.name, t.value) for t in VehicleType],
                             help_text="Select the vehicle chassis type")
-    # Sitting capacity
     capacity = models.PositiveSmallIntegerField(null=False, default=2)
+    is_deleted = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='created_vehicle_models')
+    updated_at = models.DateTimeField(auto_now=True)
+    updated_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='updated_vehicle_models')
 
     class Meta:
         db_table = "baham_vehicle_model"
 
+    def void(self):
+        self.is_deleted = True
+        self.save()
+        
+    def unvoid(self):
+        self.is_deleted = False
+        self.save()
+
     def __str__(self):
         return f"{self.vendor} {self.model}"
-
 
 class Vehicle(models.Model):
     vehicle_id = models.AutoField(primary_key=True, db_column='id')
@@ -70,7 +78,6 @@ class Vehicle(models.Model):
     def __str__(self):
         return f"{self.model.vendor} {self.model.model} {self.colour}"
 
-
 class Contract(models.Model):
     contract_id = models.AutoField(primary_key=True, db_column='id')
     vehicle = models.ForeignKey(Vehicle, null=False, on_delete=models.CASCADE)
@@ -81,3 +88,5 @@ class Contract(models.Model):
     fuel_share = models.PositiveSmallIntegerField(help_text="Percentage of fuel contribution.")
     maintenance_share = models.PositiveSmallIntegerField(help_text="Percentage of maintenance cost contribution.")
     schedule = models.CharField(max_length=255, null=False)  #TODO: use Django Scheduler
+
+    
