@@ -22,4 +22,12 @@ urlpatterns = [
     path('api/create/vehiclemodel', views.create_vehicle_model, name='create_vehicle_model'),
     path('api/update/vehiclemodel/<str:uuid>', views.update_vehicle_model, name='update_vehicle_model'),
     path('api/delete/vehiclemodel/<str:uuid>', views.delete_vehicle_model, name='delete_vehicle_model'),
+    
+    
+    ### USER PROFILE ###
+    path('api/get/userprofiles', views.get_all_user_profiles, name='get_all_user_profiles'),
+    path('api/get/userprofile/<str:uuid>', views.get_user_profile, name='get_user_profile'),
+    path('api/create/userprofile', views.create_user_profile, name='create_user_profile'),
+    path('api/update/userprofile/<str:uuid>', views.update_user_profile, name='update_user_profile'),
+    path('api/delete/userprofile/<str:uuid>', views.delete_user_profile, name='delete_user_profile'),
 ]
